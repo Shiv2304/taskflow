@@ -1,10 +1,9 @@
 # TaskFlow
 
-A task management REST API built with Flask and SQLite.
+A task management built with Flask and SQLite.
 
 ## Features
 - Full CRUD functionality (Create, Read, Update, Delete)
-- RESTful endpoints
 - SQLite database for task storage
 
 ## Tech Stack
