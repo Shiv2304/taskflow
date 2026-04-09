@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taskflow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-gray-100 to-gray-200">
+
+    <div class="max-w-xl mx-auto mt-16 bg-white p-6 rounded-2xl shadow-lg border">
+
+        <!-- Heading -->
+        <h1 class="text-2xl font-bold mb-6 text-center">Taskflow</h1>
+
+        <!-- Form -->
+        <form action="/add" method="post" class="flex gap-2 mb-6">
+            <input 
+                type="text" 
+                name="title" 
+                placeholder="Enter todo"
+                class="border p-2 rounded-lg w-full bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            >
+
+            <button 
+                type="submit" 
+                class="bg-blue-500 text-white px-5 py-2 rounded-lg hover:bg-blue-600 transition shadow-sm"
+            >
+                Add
+            </button>
+        </form>
+
+        <!-- Todo List -->
+        <div class="space-y-3">
+
+            {% for todo in todo_list %}
+            <div class="flex justify-between items-center p-4 border rounded-xl bg-gray-50 hover:shadow-md transition">
+
+                <!-- Left -->
+                <div>
+                    <p class="font-medium mb-1 {% if todo.complete %}line-through text-gray-400{% endif %}">
+                        {{ todo.title }}
+                    </p>
+
+                    {% if todo.complete == False %}
+                        <span class="text-red-500 text-sm">Not complete</span>
+                    {% else %}
+                        <span class="text-green-500 text-sm">Completed</span>
+                    {% endif %}
+                </div>
+
+                <!-- Right -->
+                <div class="flex gap-4 text-sm">
+                    <a href="/update/{{ todo.id }}" 
+                       class="text-blue-500 font-medium hover:text-blue-700">
+                       Done
+                    </a>
+
+                    <a href="/delete/{{ todo.id }}" 
+                       class="text-red-500 font-medium hover:text-red-700">
+                       Delete
+                    </a>
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</body>
+</html>
